@@ -28,9 +28,10 @@ const SearchParams = () => {
 }
 
   return (
-    <div className="search-params">
+    <div className="my-0 mx-auto w-11/12">
       <form
     
+    className="p-10 mb-10 rounded-lg bg-gray-200 shadow-lg flex flex-col justify-center items-center"
 
         onSubmit={(e) => {
           e.preventDefault();
@@ -89,7 +90,8 @@ const SearchParams = () => {
           </select>
         </label>
 
-        <button>Submit</button>
+        <button className="rounded px-6 py-2 text-white hover:opacity-50 border-none bg-orange-500">
+Submit</button>
       </form>
       <Results pets={pets} />
     </div>
