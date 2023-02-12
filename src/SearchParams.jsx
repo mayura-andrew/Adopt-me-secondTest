@@ -1,6 +1,6 @@
 import {  useState } from "react";
 import { useSelector, useDispatch} from "react-redux";
-import { useQuery } from "@tanstack/react-query";
+import { useSearchQuery } from "./petApiService";
 import Results from "./Results";
 import useBreedList from "./useBreedList";
 import fetchSearch from "./fetchSearch";
@@ -16,8 +16,7 @@ const SearchParams = () => {
   const [breeds] = useBreedList(animal);
   const dispatch = useDispatch();
 
-  const results = useQuery(["search", searchParams], fetchSearch);
-  const pets = results?.data?.pets ?? [];
+  const { data: pets}= useSearchQuery(searchParams);
   if (results.isLoading) {
     return (
         <div className="loading-pane">

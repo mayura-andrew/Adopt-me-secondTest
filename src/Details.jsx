@@ -1,20 +1,18 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {useQuery} from "@tanstack/react-query";
-import fetchPet from "./fetchPet";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import Modal from "./Model";
 import { useDispatch } from "react-redux";
 import { adopt } from "./adoptedPetSlice";
-
+import { useGetPetQuery } from "./petApiService";
 
 const Details = () => {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
     const { id } = useParams();
-    const results = useQuery(["details", id], fetchPet);
     const dispatch = useDispatch();
+    const {isLoading, data: pet} = useGetPetQuery(id);
 
     if (results.isLoading) {
         return (
@@ -23,7 +21,6 @@ const Details = () => {
             </div>
         );
     }
-    const pet = results.data.pets[0];
     return (
         <div className="details">
             <Carousel images={pet.images} />;
