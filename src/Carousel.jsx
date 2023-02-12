@@ -26,7 +26,7 @@ class Carousel extends Component {
         const { images } = this.props;
         return (
             <div className="carousel">
-                <img src={images[active]} alt="animal" />
+                <img data-testid="hero" src={images[active]} alt="animal" />
                 <div className="carousel-smaller">
                     {images.map((photo, index) => (
                         <img 
@@ -34,6 +34,7 @@ class Carousel extends Component {
                             data-index={index}
                             key={photo}
                             src={photo}
+                            data-testid={`thumbnail${index}`}
                             className={index === active ? "active" : ""}
                             alt= "animal thumbnail" />
 
